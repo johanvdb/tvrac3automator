@@ -200,6 +200,7 @@ public class AutomatorThread extends Thread {
 				listIssues();
 				log("Done. Closing browser.");
 				driver.quit();
+				stop = true;
 			} catch (Exception e) {
 				log("Error: " + e.getMessage());
 				if (driver != null) {
