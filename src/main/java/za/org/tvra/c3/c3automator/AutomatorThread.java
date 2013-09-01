@@ -183,6 +183,11 @@ public class AutomatorThread extends Thread {
 		logTarget.append(date + ": " + message + "\n");
 	}
 	
+	private void logClear() {
+		logTarget.setText(null);
+		log("Log cleared");
+	}
+	
 	@Override
 	public void run() {
 		
@@ -200,11 +205,12 @@ public class AutomatorThread extends Thread {
 				listIssues();
 				log("Done. Closing browser.");
 				driver.quit();
-				int timer = 60 * 60;
+				int timer = 60;
 				while (timer-- > 0) {
-					log("Sleeing... " + timer + " seconds left");
-					Thread.sleep(1000);
+					log("Sleeing... " + timer + " minutes left");
+					Thread.sleep(60);
 				}
+				logClear();
 			} catch (Exception e) {
 				log("Error: " + e.getMessage());
 				if (driver != null) {
